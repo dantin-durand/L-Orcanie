@@ -103,11 +103,6 @@ export const menu = [
         description: "",
         price: 0.05,
       },
-    ],
-  },
-  {
-    title: "Boissons chaudes",
-    dishes: [
       {
         label: "Café",
         realName: "Café",

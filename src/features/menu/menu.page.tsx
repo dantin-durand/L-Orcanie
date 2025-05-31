@@ -59,16 +59,20 @@ export default function MenuPage() {
           />
           <Label htmlFor="realname-mode">Afficher les noms</Label>
         </div>
-        <Button
-          className="w-full mb-6"
-          onClick={() => setQuantities({})}
-          size="lg"
-        >
-          Réinitialiser les quantités
-        </Button>
+        {selectedItems.length > 0 && (
+          <Button
+            className="w-full mb-6"
+            onClick={() => setQuantities({})}
+            size="lg"
+          >
+            Réinitialiser les quantités
+          </Button>
+        )}
         {menu.map((item: MenuItem, itemIndex: number) => (
           <Card key={itemIndex} className="mb-4 gap-0 px-4">
-            <Heading1 className="mb-6">{item.title}</Heading1>
+            <div className="sticky top-0 bg-white z-10 px-2 py-3 border-b border-gray-200 mb-6">
+              <Heading1 className="">{item.title}</Heading1>
+            </div>
             {item.dishes.map((dish, dishIndex) => {
               const id = getDishId(itemIndex, dishIndex);
               const qty = quantities[id] || 0;
@@ -143,14 +147,41 @@ export default function MenuPage() {
             </CardHeader>
           </Card>
         )}
-        <Button
-          className="w-full mt-6"
-          onClick={() => setQuantities({})}
-          size="lg"
-        >
-          Réinitialiser les quantités
-        </Button>
+        {selectedItems.length > 0 && (
+          <Button
+            className="w-full mt-6"
+            onClick={() => setQuantities({})}
+            size="lg"
+          >
+            Réinitialiser les quantités
+          </Button>
+        )}
       </div>
+      <button
+        className="fixed bottom-5 left-5 p-4 rounded-full shadow-lg hover:bg-gray-100 transition-colors bg-primary text-primary-foreground z-50"
+        onClick={() =>
+          window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: "smooth",
+          })
+        }
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1em"
+          height="1em"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="48"
+            d="m112 268l144 144l144-144M256 392V100"
+          />
+        </svg>
+      </button>
     </div>
   );
 }
