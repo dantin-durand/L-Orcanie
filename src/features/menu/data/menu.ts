@@ -7,7 +7,7 @@ export const menu = [
         realName: "Ragout de viande",
         description: "",
         price: 0.45,
-        pinned: false,
+        pinned: true,
       },
       {
         label: "Cullen Skink",
@@ -139,29 +139,35 @@ export const menu = [
         price: 0.1,
       },
       {
-        label: "Bière",
-        realName: "Bière",
+        label: "Bière, Whisky, Rhum, Téquila",
+        realName: "Bière, Whisky, Rhum, Téquila",
         description: "",
         price: 0.1,
       },
-      {
-        label: "Whiskey",
-        realName: "Whiskey",
-        description: "",
-        price: 0.1,
-      },
-      {
-        label: "Rhum",
-        realName: "Rhum",
-        description: "",
-        price: 0.1,
-      },
-      {
-        label: "Téquila",
-        realName: "Téquila",
-        description: "",
-        price: 0.1,
-      },
+      // {
+      //   label: "Bière",
+      //   realName: "Bière",
+      //   description: "",
+      //   price: 0.1,
+      // },
+      // {
+      //   label: "Whiskey",
+      //   realName: "Whiskey",
+      //   description: "",
+      //   price: 0.1,
+      // },
+      // {
+      //   label: "Rhum",
+      //   realName: "Rhum",
+      //   description: "",
+      //   price: 0.1,
+      // },
+      // {
+      //   label: "Téquila",
+      //   realName: "Téquila",
+      //   description: "",
+      //   price: 0.1,
+      // },
       {
         label: "Gnole",
         realName: "Gnole",
@@ -173,6 +179,7 @@ export const menu = [
         realName: "15 Shots de Gnole",
         description: "",
         price: 0.75,
+        pinned: true,
       },
       {
         label: "Champagne",

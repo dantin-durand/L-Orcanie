@@ -51,13 +51,13 @@ export default function MenuPage() {
   return (
     <div className="bg-gray-100 px-[5%] py-10 min-h-screen w-full">
       <div className="max-w-3xl mx-auto">
-        <div className="flex items-center space-x-2 mb-6">
+        <div className="flex items-center space-x-2 mb-6 justify-end">
+          <Label htmlFor="realname-mode">Afficher les noms</Label>
           <Switch
             id="realname-mode"
             checked={showRealName}
             onCheckedChange={setShowRealName}
           />
-          <Label htmlFor="realname-mode">Afficher les noms</Label>
         </div>
         {selectedItems.length > 0 && (
           <Button
@@ -81,8 +81,10 @@ export default function MenuPage() {
               return (
                 <CardHeader
                   key={dishIndex}
-                  className={`px-2 py-3 rounded-lg border-2 ${
-                    dish.pinned ? "border-grey-800 px-3" : " border-transparent"
+                  className={`px-2 py-3 rounded-lg border ${
+                    dish.pinned
+                      ? "border-yellow-500 bg-yellow-50 px-3"
+                      : " border-transparent"
                   } ${qty > 0 ? "bg-green-50" : ""}`}
                 >
                   <CardTitle>
