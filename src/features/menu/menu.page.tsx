@@ -1,16 +1,15 @@
 import {
   Card,
   CardAction,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "../../components/ui/card";
-import { Heading1 } from "../../components/ui/title";
 import { menu, type MenuItem } from "./data/menu";
 import { useState, useMemo } from "react";
 import { Label } from "../../components/ui/label";
 import { Switch } from "../../components/ui/switch";
 import { Button } from "../../components/ui/button";
+import { MenuItemSection } from "./components/MenuItemCard";
 
 export default function MenuPage() {
   const [quantities, setQuantities] = useState<{ [key: string]: number }>({});
@@ -70,59 +69,15 @@ export default function MenuPage() {
         )}
         <div className="w-full grid md:grid-cols-2 xl:grid-cols-4 gap-6">
           {menu.map((item: MenuItem, itemIndex: number) => (
-            <Card key={itemIndex} className="mb-4 gap-0 px-4 self-start">
-              <div className="sticky top-0 bg-white z-10 px-2 py-3 border-b border-gray-200 mb-6">
-                <Heading1 className="">{item.title}</Heading1>
-              </div>
-              {item.dishes.map((dish, dishIndex) => {
-                const id = getDishId(itemIndex, dishIndex);
-                const qty = quantities[id] || 0;
-                const totalDishPrice = dish.price * qty;
-
-                return (
-                  <CardHeader
-                    key={dishIndex}
-                    className={`px-2 py-3 rounded-lg border ${
-                      dish.pinned
-                        ? "border-yellow-500 bg-yellow-50 px-3"
-                        : " border-transparent"
-                    } ${qty > 0 ? "bg-green-50" : ""}`}
-                  >
-                    <CardTitle>
-                      {showRealName ? dish.realName : dish.label}
-                    </CardTitle>
-                    <CardDescription>
-                      {showRealName ? dish.label : dish.realName}
-                    </CardDescription>
-                    <CardAction className="flex flex-col items-end gap-2">
-                      <p>
-                        {qty > 1
-                          ? `$${totalDishPrice.toFixed(
-                              2
-                            )} (${qty} x $${dish.price.toFixed(2)})`
-                          : `$${dish.price.toFixed(2)}`}
-                      </p>
-                      <select
-                        className="ml-2 border rounded p-1"
-                        value={qty}
-                        onChange={(e) =>
-                          setQuantities((prev) => ({
-                            ...prev,
-                            [id]: Number(e.target.value),
-                          }))
-                        }
-                      >
-                        {Array.from({ length: 31 }, (_, i) => i).map((num) => (
-                          <option key={num} value={num}>
-                            {num}
-                          </option>
-                        ))}
-                      </select>
-                    </CardAction>
-                  </CardHeader>
-                );
-              })}
-            </Card>
+            <MenuItemSection
+              key={itemIndex}
+              item={item}
+              itemIndex={itemIndex}
+              showRealName={showRealName}
+              getDishId={getDishId}
+              quantities={quantities}
+              setQuantities={setQuantities}
+            />
           ))}
 
           {selectedItems.length > 0 && (
