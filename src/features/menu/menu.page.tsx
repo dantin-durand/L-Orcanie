@@ -112,7 +112,7 @@ export default function MenuPage() {
                           }))
                         }
                       >
-                        {Array.from({ length: 41 }, (_, i) => i).map((num) => (
+                        {Array.from({ length: 31 }, (_, i) => i).map((num) => (
                           <option key={num} value={num}>
                             {num}
                           </option>
