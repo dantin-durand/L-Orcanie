@@ -54,18 +54,7 @@ export const menu = [
     ],
   },
   {
-    title: "Fromages",
-    dishes: [
-      {
-        label: "Shropshire",
-        realName: "Fromage",
-        description: "",
-        price: 0.05,
-      },
-    ],
-  },
-  {
-    title: "Desserts",
+    title: "Desserts & Fromages",
     dishes: [
       {
         label: "Bannock",
@@ -85,6 +74,12 @@ export const menu = [
         description: "",
         price: 0.35,
         pinned: true,
+      },
+      {
+        label: "Fromage (Shropshire)",
+        realName: "Fromage",
+        description: "",
+        price: 0.05,
       },
     ],
   },

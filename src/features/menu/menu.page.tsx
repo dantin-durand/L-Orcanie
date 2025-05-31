@@ -68,7 +68,7 @@ export default function MenuPage() {
             Réinitialiser les quantités
           </Button>
         )}
-        <div className="w-full grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="w-full grid md:grid-cols-2 xl:grid-cols-4 gap-6">
           {menu.map((item: MenuItem, itemIndex: number) => (
             <Card key={itemIndex} className="mb-4 gap-0 px-4 self-start">
               <div className="sticky top-0 bg-white z-10 px-2 py-3 border-b border-gray-200 mb-6">
@@ -126,7 +126,7 @@ export default function MenuPage() {
           ))}
 
           {selectedItems.length > 0 && (
-            <Card className="mt-4 md:mt-0">
+            <Card className="mt-4 md:mt-0 col-span-1 md:col-span-2 xl:col-span-4">
               <CardHeader>
                 <CardTitle>Détails</CardTitle>
                 <div className="mt-2 text-sm text-gray-700">
