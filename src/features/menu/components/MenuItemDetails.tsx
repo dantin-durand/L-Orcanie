@@ -3,14 +3,17 @@ import {
   DrawerContent,
   DrawerTrigger,
 } from "../../../components/ui/drawer";
+import { Heading1 } from "../../../components/ui/title";
 import type { DishIngredient } from "../data/menu";
 
 interface MenuItemDetailsProps {
+  name: string;
   description?: string;
   ingredients?: DishIngredient[];
 }
 
 export function MenuItemDetails({
+  name,
   description,
   ingredients,
 }: MenuItemDetailsProps) {
@@ -54,18 +57,30 @@ export function MenuItemDetails({
       </DrawerTrigger>
       <DrawerContent className="pb-10">
         <div className="px-6 py-4 flex flex-col gap-6">
-          <p className="text-lg">
-            {description || "Aucune description disponible."}
-          </p>
+          <div className="flex flex-col gap-2">
+            <Heading1 className="text-2xl text-left">
+              {name || "Détails du plat"}
+            </Heading1>
+            <p className="text-lg">
+              {description || "Aucune description disponible."}
+            </p>
+          </div>
           <ul className="flex flex-col gap-4">
             {ingredients && ingredients.length > 0 ? (
               ingredients.map((ingredient, index) => (
                 <li
                   key={index}
-                  className="mt-2 flex items-center gap-2 text-md"
+                  className="mt-2 flex items-center gap-3 text-md"
                 >
-                  <div className="w-8 h-8 bg-gray-200" />
-                  <span>{ingredient.label}</span>
+                  <img
+                    src={ingredient.details.image}
+                    alt={ingredient.details.label}
+                    className="w-10 h-10"
+                  />
+                  <span>
+                    <strong>{ingredient.quantity}</strong>{" "}
+                    {ingredient.details.label}
+                  </span>
                 </li>
               ))
             ) : (

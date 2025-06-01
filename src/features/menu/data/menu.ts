@@ -1,3 +1,23 @@
+import type { Ingredient } from "./ingredients";
+import {
+  butcher_piece,
+  cheese_wheel,
+  chopped_mushrooms,
+  chopped_vegetables,
+  corn_flour,
+  eggs,
+  fish_filet,
+  laurier_rose,
+  milk_bottles,
+  minced_meat,
+  origan,
+  raspberries,
+  red_currants,
+  salt,
+  sugar_bag,
+  wild_mint,
+  wild_thyme,
+} from "./ingredients";
 export const menu = [
   {
     title: "Repas",
@@ -10,10 +30,10 @@ export const menu = [
         price: 0.45,
         pinned: true,
         intredients: [
-          { label: "2 Pièce du boucher" },
-          { label: "3 Tas de légume coupés" },
-          { label: "1 Champignons coupés" },
-          { label: "Sel" },
+          { quantity: 2, details: butcher_piece },
+          { quantity: 3, details: chopped_vegetables },
+          { quantity: 1, details: chopped_mushrooms },
+          { quantity: 1, details: salt },
         ],
       },
       {
@@ -24,10 +44,10 @@ export const menu = [
         price: 0.45,
         pinned: false,
         intredients: [
-          { label: "2 Filets de poisson" },
-          { label: "3 Tas de légume coupés" },
-          { label: "1 Champignons coupés" },
-          { label: "Sel" },
+          { quantity: 2, details: fish_filet },
+          { quantity: 3, details: chopped_vegetables },
+          { quantity: 1, details: chopped_mushrooms },
+          { quantity: 1, details: salt },
         ],
       },
       {
@@ -38,11 +58,11 @@ export const menu = [
         price: 0.35,
         pinned: false,
         intredients: [
-          { label: "2 Viande hachée" },
-          { label: "1 Farine de maïs" },
-          { label: "1 Tas de légume coupés" },
-          { label: "1 Laurier-rose" },
-          { label: "Sel" },
+          { quantity: 2, details: minced_meat },
+          { quantity: 1, details: corn_flour },
+          { quantity: 1, details: chopped_vegetables },
+          { quantity: 1, details: laurier_rose },
+          { quantity: 1, details: salt },
         ],
       },
       {
@@ -53,10 +73,10 @@ export const menu = [
         price: 0.25,
         pinned: false,
         intredients: [
-          { label: "1 Filet de poisson" },
-          { label: "1 Tas de légume coupés" },
-          { label: "1 Origan" },
-          { label: "Sel" },
+          { quantity: 1, details: fish_filet },
+          { quantity: 1, details: chopped_vegetables },
+          { quantity: 1, details: origan },
+          { quantity: 1, details: salt },
         ],
       },
       {
@@ -67,10 +87,10 @@ export const menu = [
         price: 0.25,
         pinned: false,
         intredients: [
-          { label: "1 Viande hachée" },
-          { label: "1 Tas de légume coupés" },
-          { label: "1 Origan" },
-          { label: "Sel" },
+          { quantity: 1, details: minced_meat },
+          { quantity: 1, details: chopped_vegetables },
+          { quantity: 1, details: origan },
+          { quantity: 1, details: salt },
         ],
       },
       {
@@ -80,9 +100,9 @@ export const menu = [
         price: 0.25,
         pinned: false,
         intredients: [
-          { label: "3 Tas de légume coupés" },
-          { label: "1 Origan" },
-          { label: "Sel" },
+          { quantity: 3, details: chopped_vegetables },
+          { quantity: 1, details: origan },
+          { quantity: 1, details: salt },
         ],
       },
       {
@@ -93,10 +113,23 @@ export const menu = [
         price: 0.2,
         pinned: false,
         intredients: [
-          { label: "1 Filet de poisson" },
-          { label: "1 Tas de légume coupés" },
-          { label: "1 Menthe sauvage" },
-          { label: "Sel" },
+          { quantity: 1, details: fish_filet },
+          { quantity: 1, details: chopped_vegetables },
+          { quantity: 1, details: wild_mint },
+          { quantity: 1, details: salt },
+        ],
+      },
+      {
+        label: "Bannock",
+        realName: "Steack Patate",
+        description:
+          "Petites galettes d'avoine toasté au beurre salé. Servies avec du bacon grillé et des oeufs brouillés.",
+        price: 0.2,
+        intredients: [
+          { quantity: 1, details: butcher_piece },
+          { quantity: 1, details: chopped_vegetables },
+          { quantity: 1, details: wild_thyme },
+          { quantity: 1, details: salt },
         ],
       },
     ],
@@ -105,30 +138,17 @@ export const menu = [
     title: "Desserts & Fromages",
     dishes: [
       {
-        label: "Bannock",
-        realName: "Steack Patate",
-        description:
-          "Petites galettes d'avoine toasté au beurre salé. Servies avec du bacon grillé et des oeufs brouillés.",
-        price: 0.2,
-        intredients: [
-          { label: "1 Pièce du boucher" },
-          { label: "1 Tas de légume coupés" },
-          { label: "1 Thym sauvage" },
-          { label: "Sel" },
-        ],
-      },
-      {
         label: "Butterscotch",
         realName: "Tourte au poisson",
         description:
           "Tarte à la crème de caramel. Servie avec une cuillère de crème fouettée.",
         price: 0.35,
         intredients: [
-          { label: "2 Filets de poisson" },
-          { label: "1 Farine de maïs" },
-          { label: "1 Tas de légume coupés" },
-          { label: "1 Laurier-rose" },
-          { label: "Sel" },
+          { quantity: 2, details: fish_filet },
+          { quantity: 1, details: corn_flour },
+          { quantity: 1, details: chopped_vegetables },
+          { quantity: 1, details: laurier_rose },
+          { quantity: 1, details: salt },
         ],
       },
       {
@@ -139,11 +159,11 @@ export const menu = [
         price: 0.35,
         pinned: true,
         intredients: [
-          { label: "4 Framboises" },
-          { label: "4 Groseilles" },
-          { label: "3 Oeufs" },
-          { label: "2 Bouteilles de lait" },
-          { label: "Sac de sucre" },
+          { quantity: 4, details: raspberries },
+          { quantity: 4, details: red_currants },
+          { quantity: 3, details: eggs },
+          { quantity: 2, details: milk_bottles },
+          { quantity: 1, details: sugar_bag },
         ],
       },
       {
@@ -151,7 +171,7 @@ export const menu = [
         realName: "Fromage",
         description: "",
         price: 0.05,
-        intredients: [{ label: "Meule de fromage" }],
+        intredients: [{ quantity: 1, details: cheese_wheel }],
       },
     ],
   },
@@ -250,8 +270,7 @@ export type Dish = {
   intredients?: DishIngredient[];
 };
 
-// les ingrédients d'un plat
 export type DishIngredient = {
-  label: string;
-  image?: string;
+  quantity?: number;
+  details: Ingredient;
 };

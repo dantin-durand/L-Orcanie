@@ -52,6 +52,7 @@ export function MenuItemSection({
               <CardTitle className="flex items-center gap-3">
                 {showRealName ? dish.realName : dish.label}{" "}
                 <MenuItemDetails
+                  name={showRealName ? dish.realName : dish.label}
                   description={dish.description}
                   ingredients={dish.intredients}
                 />
