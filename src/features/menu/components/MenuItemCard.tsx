@@ -30,7 +30,7 @@ export function MenuItemSection({
   setQuantities,
 }: MenuItemSectionProps) {
   return (
-    <Card className="mb-4 gap-0 px-4 self-start">
+    <Card className="mb-4 gap-0 px-4 self-start" id={`item-${itemIndex}`}>
       <div className="sticky top-0 bg-white z-10 px-2 py-3 border-b border-gray-200 mb-6">
         <Heading1 className="">{item.title}</Heading1>
       </div>

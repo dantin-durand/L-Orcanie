@@ -48,8 +48,8 @@ export default function MenuPage() {
   }, [quantities]);
 
   return (
-    <div className="bg-gray-100 px-[5%] py-10 min-h-screen w-full">
-      <div className="max-w-[1400px] mx-auto">
+    <div className="bg-[#fce1b6] px-[5%] py-10 min-h-screen w-full">
+      <div className="max-w-[1400px] mx-auto relative">
         <div className="flex items-center space-x-2 mb-6 justify-end">
           <Label htmlFor="realname-mode">Afficher les noms</Label>
           <Switch
@@ -81,7 +81,7 @@ export default function MenuPage() {
           ))}
 
           {selectedItems.length > 0 && (
-            <Card className="mt-4 md:mt-0 col-span-1 md:col-span-2 xl:col-span-4">
+            <Card className="mt-4 md:mt-0 col-span-1 md:col-span-2 xl:col-span-4 ">
               <CardHeader>
                 <CardTitle>Détails</CardTitle>
                 <div className="mt-2 text-sm text-gray-700">

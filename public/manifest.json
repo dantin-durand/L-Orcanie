@@ -3,8 +3,8 @@
   "short_name": "L'Orcanie",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#dfb062",
-  "theme_color": "#dfb062",
+  "background_color": "#fce1b6",
+  "theme_color": "#fce1b6",
   "icons": [
     {
       "src": "/splash_screens/icon.png",
