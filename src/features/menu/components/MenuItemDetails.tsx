@@ -8,12 +8,14 @@ import type { DishIngredient } from "../data/menu";
 
 interface MenuItemDetailsProps {
   name: string;
+  realname: string;
   description?: string;
   ingredients?: DishIngredient[];
 }
 
 export function MenuItemDetails({
   name,
+  realname,
   description,
   ingredients,
 }: MenuItemDetailsProps) {
@@ -58,8 +60,11 @@ export function MenuItemDetails({
       <DrawerContent className="pb-10">
         <div className="px-6 py-4 flex flex-col gap-6">
           <div className="flex flex-col gap-2">
-            <Heading1 className="text-2xl text-left">
+            <Heading1 className="text-2xl text-left flex items-center gap-x-4 gap-y-1 flex-wrap">
               {name || "Détails du plat"}
+              <span className="text-sm bg-gray-100 px-3 py-1 rounded-sm border border-gray-400 text-gray-600 font-medium ">
+                {realname}
+              </span>
             </Heading1>
             <p className="text-lg">
               {description || "Aucune description disponible."}

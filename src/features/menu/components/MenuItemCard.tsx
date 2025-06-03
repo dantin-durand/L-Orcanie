@@ -53,6 +53,7 @@ export function MenuItemSection({
                 {showRealName ? dish.realName : dish.label}{" "}
                 <MenuItemDetails
                   name={showRealName ? dish.realName : dish.label}
+                  realname={showRealName ? dish.label : dish.realName}
                   description={dish.description}
                   ingredients={dish.intredients}
                 />
