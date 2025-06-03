@@ -11,6 +11,7 @@ interface MenuItemDetailsProps {
   realname: string;
   description?: string;
   ingredients?: DishIngredient[];
+  quantity?: number;
 }
 
 export function MenuItemDetails({
@@ -18,6 +19,7 @@ export function MenuItemDetails({
   realname,
   description,
   ingredients,
+  quantity = 1,
 }: MenuItemDetailsProps) {
   return (
     <Drawer>
@@ -83,7 +85,11 @@ export function MenuItemDetails({
                     className="w-10 h-10"
                   />
                   <span>
-                    <strong>{ingredient.quantity}</strong>{" "}
+                    <strong>
+                      {quantity
+                        ? ingredient.quantity * quantity
+                        : ingredient.quantity}
+                    </strong>{" "}
                     {ingredient.details.label}
                   </span>
                 </li>

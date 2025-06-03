@@ -271,6 +271,6 @@ export type Dish = {
 };
 
 export type DishIngredient = {
-  quantity?: number;
+  quantity: number;
   details: Ingredient;
 };

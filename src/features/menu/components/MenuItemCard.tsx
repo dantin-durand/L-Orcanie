@@ -56,6 +56,7 @@ export function MenuItemSection({
                   realname={showRealName ? dish.label : dish.realName}
                   description={dish.description}
                   ingredients={dish.intredients}
+                  quantity={qty}
                 />
               </CardTitle>
               <CardDescription>
