@@ -12,6 +12,7 @@ interface MenuItemDetailsProps {
   description?: string;
   ingredients?: DishIngredient[];
   quantity?: number;
+  multiplier: number;
 }
 
 export function MenuItemDetails({
@@ -20,6 +21,7 @@ export function MenuItemDetails({
   description,
   ingredients,
   quantity = 1,
+  multiplier = 1,
 }: MenuItemDetailsProps) {
   return (
     <Drawer>
@@ -74,26 +76,28 @@ export function MenuItemDetails({
           </div>
           <ul className="flex flex-col gap-4">
             {ingredients && ingredients.length > 0 ? (
-              ingredients.map((ingredient, index) => (
-                <li
-                  key={index}
-                  className="mt-2 flex items-center gap-3 text-md"
-                >
-                  <img
-                    src={ingredient.details.image}
-                    alt={ingredient.details.label}
-                    className="w-10 h-10"
-                  />
-                  <span>
-                    <strong>
-                      {quantity
-                        ? ingredient.quantity * quantity
-                        : ingredient.quantity}
-                    </strong>{" "}
-                    {ingredient.details.label}
-                  </span>
-                </li>
-              ))
+              ingredients.map((ingredient, index) => {
+                const adjustedQty =
+                  quantity && multiplier
+                    ? ingredient.quantity * Math.ceil(quantity / multiplier)
+                    : ingredient.quantity;
+
+                return (
+                  <li
+                    key={index}
+                    className="mt-2 flex items-center gap-3 text-md"
+                  >
+                    <img
+                      src={ingredient.details.image}
+                      alt={ingredient.details.label}
+                      className="w-10 h-10"
+                    />
+                    <span>
+                      <strong>{adjustedQty}</strong> {ingredient.details.label}
+                    </span>
+                  </li>
+                );
+              })
             ) : (
               <li>Aucun ingrédient spécifié.</li>
             )}

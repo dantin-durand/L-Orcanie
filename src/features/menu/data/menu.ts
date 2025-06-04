@@ -29,6 +29,7 @@ export const menu = [
           "Ragoût d'agneau mijoté longuement, la viande est tendre et fondante.",
         price: 0.45,
         pinned: true,
+        multiplier: 2,
         intredients: [
           { quantity: 2, details: butcher_piece },
           { quantity: 3, details: chopped_vegetables },
@@ -43,6 +44,7 @@ export const menu = [
           "Soupe crémeuse et parfumée avec de gros morceaux de saumon fumé.",
         price: 0.45,
         pinned: false,
+        multiplier: 2,
         intredients: [
           { quantity: 2, details: fish_filet },
           { quantity: 3, details: chopped_vegetables },
@@ -57,6 +59,7 @@ export const menu = [
           "Tourte dorée et croustillante, farcie de mouton haché. Servie chaude avec une cuillère de purée.",
         price: 0.35,
         pinned: false,
+        multiplier: 2,
         intredients: [
           { quantity: 2, details: minced_meat },
           { quantity: 1, details: corn_flour },
@@ -72,6 +75,7 @@ export const menu = [
           "Soupe de pommes de terre parssemée de morceaux de truite fumée. Servie avec une miche de main d'avoine.",
         price: 0.25,
         pinned: false,
+        multiplier: 2,
         intredients: [
           { quantity: 1, details: fish_filet },
           { quantity: 1, details: chopped_vegetables },
@@ -86,6 +90,7 @@ export const menu = [
           "Bouillon de poule et poirreau réconfortant avec de l'oge perlé. Servie avec une miche de pain d'avoine.",
         price: 0.25,
         pinned: false,
+        multiplier: 2,
         intredients: [
           { quantity: 1, details: minced_meat },
           { quantity: 1, details: chopped_vegetables },
@@ -99,6 +104,7 @@ export const menu = [
         description: "Soupe épaisse de légumes parsemé de morceaux de lard",
         price: 0.25,
         pinned: false,
+        multiplier: 2,
         intredients: [
           { quantity: 3, details: chopped_vegetables },
           { quantity: 1, details: origan },
@@ -112,6 +118,7 @@ export const menu = [
           "Deux oeufs au plat sur une tranche de truite fumée. Le tout sur une épaisse tranche de main grillé",
         price: 0.2,
         pinned: false,
+        multiplier: 2,
         intredients: [
           { quantity: 1, details: fish_filet },
           { quantity: 1, details: chopped_vegetables },
@@ -125,6 +132,7 @@ export const menu = [
         description:
           "Petites galettes d'avoine toasté au beurre salé. Servies avec du bacon grillé et des oeufs brouillés.",
         price: 0.2,
+        multiplier: 2,
         intredients: [
           { quantity: 1, details: butcher_piece },
           { quantity: 1, details: chopped_vegetables },
@@ -143,6 +151,7 @@ export const menu = [
         description:
           "Tarte à la crème de caramel. Servie avec une cuillère de crème fouettée.",
         price: 0.35,
+        multiplier: 2,
         intredients: [
           { quantity: 2, details: fish_filet },
           { quantity: 1, details: corn_flour },
@@ -158,6 +167,7 @@ export const menu = [
           "Dessert écossais à base de framboises et baies sauvages. Des flocons d'avoine grillés avec un filet de miel des montagnes. Servi avec de la crème fouettée et une touche de whisky.",
         price: 0.35,
         pinned: true,
+        multiplier: 2,
         intredients: [
           { quantity: 4, details: raspberries },
           { quantity: 4, details: red_currants },
@@ -206,7 +216,7 @@ export const menu = [
         label: "Thé noir",
         realName: "Thé noir",
         description: "Thé noir chaud",
-        price: 0.05,
+        price: 0.1,
       },
     ],
   },
@@ -268,6 +278,7 @@ export type Dish = {
   price: number;
   pinned: boolean;
   intredients?: DishIngredient[];
+  multiplier?: number;
 };
 
 export type DishIngredient = {

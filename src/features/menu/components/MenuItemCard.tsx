@@ -57,6 +57,7 @@ export function MenuItemSection({
                   description={dish.description}
                   ingredients={dish.intredients}
                   quantity={qty}
+                  multiplier={dish.multiplier || 1}
                 />
               </CardTitle>
               <CardDescription>
