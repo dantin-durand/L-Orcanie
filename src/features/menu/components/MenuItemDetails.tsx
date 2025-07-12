@@ -75,29 +75,52 @@ export function MenuItemDetails({
             </p>
           </div>
           <ul className="flex flex-col gap-4">
+            {/* trier les ingrédients, mettre ceux qui ont isBaseIngredient à la fin */}
             {ingredients && ingredients.length > 0 ? (
-              ingredients.map((ingredient, index) => {
-                const adjustedQty =
-                  quantity && multiplier
-                    ? ingredient.quantity * Math.ceil(quantity / multiplier)
-                    : ingredient.quantity;
+              ingredients
+                .sort((a, b) => {
+                  if (
+                    a.details.isBaseIngredient &&
+                    !b.details.isBaseIngredient
+                  ) {
+                    return 1;
+                  }
+                  if (
+                    !a.details.isBaseIngredient &&
+                    b.details.isBaseIngredient
+                  ) {
+                    return -1;
+                  }
+                  return 0;
+                })
+                .map((ingredient, index) => {
+                  let adjustedQty = 0;
+                  if (ingredient.details.isBaseIngredient) {
+                    adjustedQty = 1;
+                  } else {
+                    adjustedQty =
+                      quantity && multiplier
+                        ? ingredient.quantity * Math.ceil(quantity / multiplier)
+                        : ingredient.quantity;
+                  }
 
-                return (
-                  <li
-                    key={index}
-                    className="mt-2 flex items-center gap-3 text-md"
-                  >
-                    <img
-                      src={ingredient.details.image}
-                      alt={ingredient.details.label}
-                      className="w-10 h-10"
-                    />
-                    <span>
-                      <strong>{adjustedQty}</strong> {ingredient.details.label}
-                    </span>
-                  </li>
-                );
-              })
+                  return (
+                    <li
+                      key={index}
+                      className="mt-2 flex items-center gap-3 text-md"
+                    >
+                      <img
+                        src={ingredient.details.image}
+                        alt={ingredient.details.label}
+                        className="w-10 h-10"
+                      />
+                      <span>
+                        <strong>{adjustedQty}</strong>{" "}
+                        {ingredient.details.label}
+                      </span>
+                    </li>
+                  );
+                })
             ) : (
               <li>Aucun ingrédient spécifié.</li>
             )}

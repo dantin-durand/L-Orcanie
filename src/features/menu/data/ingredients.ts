@@ -46,6 +46,7 @@ export const wild_mint: Ingredient = {
 export const salt: Ingredient = {
   label: "Sel",
   image: "/ingredients/salt.jpg",
+  isBaseIngredient: true,
 };
 
 export const wild_thyme: Ingredient = {
@@ -76,6 +77,7 @@ export const milk_bottles: Ingredient = {
 export const sugar_bag: Ingredient = {
   label: "Sac de sucre",
   image: "/ingredients/sugar_bag.jpg",
+  isBaseIngredient: true,
 };
 
 export const cheese_wheel: Ingredient = {
@@ -86,4 +88,6 @@ export const cheese_wheel: Ingredient = {
 export type Ingredient = {
   label: string;
   image?: string;
+  buyPrice?: number;
+  isBaseIngredient?: boolean;
 };

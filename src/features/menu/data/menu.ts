@@ -25,8 +25,7 @@ export const menu = [
       {
         label: "Bouillon Ecossais",
         realName: "Ragout de viande",
-        description:
-          "Ragoût d'agneau mijoté longuement, la viande est tendre et fondante.",
+        description: "Ragoût d’agneau longuement mijoté.",
         price: 0.45,
         pinned: true,
         multiplier: 2,
@@ -40,8 +39,7 @@ export const menu = [
       {
         label: "Cullen Skink",
         realName: "Ragout de poisson",
-        description:
-          "Soupe crémeuse et parfumée avec de gros morceaux de saumon fumé.",
+        description: "Soupe crémeuse et parfumée à base de saumon fumé ",
         price: 0.45,
         pinned: false,
         multiplier: 2,
@@ -53,41 +51,9 @@ export const menu = [
         ],
       },
       {
-        label: "Scotch Pie",
-        realName: "Tourte de viande",
-        description:
-          "Tourte dorée et croustillante, farcie de mouton haché. Servie chaude avec une cuillère de purée.",
-        price: 0.35,
-        pinned: false,
-        multiplier: 2,
-        intredients: [
-          { quantity: 2, details: minced_meat },
-          { quantity: 1, details: corn_flour },
-          { quantity: 1, details: chopped_vegetables },
-          { quantity: 1, details: laurier_rose },
-          { quantity: 1, details: salt },
-        ],
-      },
-      {
-        label: "Tattie Soup",
-        realName: "Soupe de poisson",
-        description:
-          "Soupe de pommes de terre parssemée de morceaux de truite fumée. Servie avec une miche de main d'avoine.",
-        price: 0.25,
-        pinned: false,
-        multiplier: 2,
-        intredients: [
-          { quantity: 1, details: fish_filet },
-          { quantity: 1, details: chopped_vegetables },
-          { quantity: 1, details: origan },
-          { quantity: 1, details: salt },
-        ],
-      },
-      {
         label: "Cock-a-leekie",
         realName: "Soupe de viande",
-        description:
-          "Bouillon de poule et poirreau réconfortant avec de l'oge perlé. Servie avec une miche de pain d'avoine.",
+        description: "Bouillon de poule réconfortant, épaissie à l’orge perlé",
         price: 0.25,
         pinned: false,
         multiplier: 2,
@@ -99,9 +65,24 @@ export const menu = [
         ],
       },
       {
-        label: "Soupe des Collines",
+        label: "Partan Bree",
+        realName: "Soupe de poisson",
+        description: "Soupe parfumée à base de crabe et de crème fraîche",
+        price: 0.25,
+        pinned: false,
+        multiplier: 2,
+        intredients: [
+          { quantity: 1, details: fish_filet },
+          { quantity: 1, details: chopped_vegetables },
+          { quantity: 1, details: origan },
+          { quantity: 1, details: salt },
+        ],
+      },
+      {
+        label: "Tattie Soup",
         realName: "Soupe de légumes",
-        description: "Soupe épaisse de légumes parsemé de morceaux de lard",
+        description:
+          "Crème onctueuse de petits pois, oignons doux, une touche de menthe fraîche. ",
         price: 0.25,
         pinned: false,
         multiplier: 2,
@@ -130,7 +111,7 @@ export const menu = [
         label: "Bannock",
         realName: "Steack Patate",
         description:
-          "Petites galettes d'avoine toasté au beurre salé. Servies avec du bacon grillé et des oeufs brouillés.",
+          "Petites galettes d’avoine beurées accompagnées d’oeufs brouillés et de tranches de bacons grillés",
         price: 0.2,
         multiplier: 2,
         intredients: [
@@ -145,6 +126,22 @@ export const menu = [
   {
     title: "Desserts & Fromages",
     dishes: [
+      {
+        label: "Scotch Apple Pie",
+        realName: "Tourte de viande",
+        description:
+          "Tarte aux pommes des vergers de Littlecreek, flambée au whisky",
+        price: 0.35,
+        pinned: false,
+        multiplier: 2,
+        intredients: [
+          { quantity: 2, details: minced_meat },
+          { quantity: 1, details: corn_flour },
+          { quantity: 1, details: chopped_vegetables },
+          { quantity: 1, details: laurier_rose },
+          { quantity: 1, details: salt },
+        ],
+      },
       {
         label: "Butterscotch",
         realName: "Tourte au poisson",
@@ -179,7 +176,7 @@ export const menu = [
       {
         label: "Fromage (Shropshire)",
         realName: "Fromage",
-        description: "",
+        description: "Fromage au lait de vache à pâte persillée",
         price: 0.05,
         intredients: [{ quantity: 1, details: cheese_wheel }],
       },
@@ -201,16 +198,16 @@ export const menu = [
         price: 0.05,
       },
       {
+        label: "Chocolat chaud",
+        realName: "Café",
+        description: "Chocolat chaud crémeux",
+        price: 0.15,
+      },
+      {
         label: "Café",
         realName: "Café",
         description: "Café noir corsé",
         price: 0.15,
-      },
-      {
-        label: "Scottish Coffee",
-        realName: "Irish Coffee",
-        description: "Café avec une touche de whisky écossais",
-        price: 0.1,
       },
       {
         label: "Thé noir",

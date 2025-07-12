@@ -10,6 +10,8 @@ import { Label } from "../../components/ui/label";
 import { Switch } from "../../components/ui/switch";
 import { Button } from "../../components/ui/button";
 import { MenuItemSection } from "./components/MenuItemCard";
+import type { Ingredient } from "./data/ingredients";
+import { MenuItemDetails } from "./components/MenuItemDetails";
 
 export default function MenuPage() {
   const [quantities, setQuantities] = useState<{ [key: string]: number }>({});
@@ -45,6 +47,51 @@ export default function MenuPage() {
     });
 
     return items;
+  }, [quantities]);
+
+  const totalIngredientsForDetails = useMemo(() => {
+    const ingredientMap = new Map<
+      string,
+      { label: string; quantity: number; details: Ingredient }
+    >();
+
+    menu.forEach((item, itemIndex) => {
+      item.dishes.forEach((dish, dishIndex) => {
+        const id = getDishId(itemIndex, dishIndex);
+        const qty = quantities[id] || 0;
+        if (qty > 0 && dish.intredients) {
+          const multiplier = dish.multiplier || 1;
+          dish.intredients.forEach((ingredient) => {
+            const key = ingredient.details.label;
+            const totalQty = ingredient.quantity * qty * multiplier;
+
+            if (ingredientMap.has(key)) {
+              ingredientMap.get(key)!.quantity += totalQty;
+            } else {
+              ingredientMap.set(key, {
+                label: ingredient.details.label,
+                quantity: totalQty,
+                details: ingredient.details,
+              });
+            }
+          });
+        }
+      });
+    });
+
+    const finalList = Array.from(ingredientMap.values());
+
+    return {
+      name: "Total ingrédients nécessaires",
+      realname: "Ingrédients cumulés",
+      description: "Ingrédients requis pour les plats sélectionnés",
+      quantity: 1,
+      multiplier: 1,
+      ingredients: finalList.map((entry) => ({
+        quantity: entry.quantity,
+        details: entry.details,
+      })),
+    };
   }, [quantities]);
 
   return (
@@ -83,7 +130,19 @@ export default function MenuPage() {
           {selectedItems.length > 0 && (
             <Card className="mt-4 md:mt-0 col-span-1 md:col-span-2 xl:col-span-4 ">
               <CardHeader>
-                <CardTitle>Détails</CardTitle>
+                <CardTitle className="flex items-center gap-3">
+                  Détails{" "}
+                  {totalIngredientsForDetails && (
+                    <MenuItemDetails
+                      name={totalIngredientsForDetails.name}
+                      realname={totalIngredientsForDetails.realname}
+                      description={totalIngredientsForDetails.description}
+                      ingredients={totalIngredientsForDetails.ingredients}
+                      quantity={1}
+                      multiplier={1}
+                    />
+                  )}
+                </CardTitle>
                 <div className="mt-2 text-sm text-gray-700">
                   {selectedItems.map((item, index) => (
                     <div
