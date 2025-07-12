@@ -74,7 +74,7 @@ export function MenuItemDetails({
               {description || "Aucune description disponible."}
             </p>
           </div>
-          <ul className="flex flex-col gap-4">
+          <ul className="flex flex-col gap-4 max-h-[50vh] overflow-y-auto pb-4">
             {/* trier les ingrédients, mettre ceux qui ont isBaseIngredient à la fin */}
             {ingredients && ingredients.length > 0 ? (
               ingredients
