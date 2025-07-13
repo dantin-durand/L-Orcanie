@@ -80,9 +80,18 @@ export function AppNavbar() {
   // get current pathname
   const currentPath = window.location.pathname;
   const isActive = (link: string) => currentPath === link;
+  // si est sur ios
+  const isIOS =
+    /iPad|iPhone|iPod/.test(navigator.userAgent) &&
+    !(window as Window & { MSStream?: unknown }).MSStream;
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-between px-[8%] bg-white shadow-md h-18 py-4 border-t border-gray-200">
+    <nav
+      className={
+        "fixed bottom-0 left-0 right-0 z-50 flex items-center justify-between px-[8%] bg-white shadow-md h-18 py-4 border-t border-gray-200" +
+        (isIOS ? " pb-6 h-20" : "")
+      }
+    >
       {list.map((item) => (
         <Link
           key={item.name}
