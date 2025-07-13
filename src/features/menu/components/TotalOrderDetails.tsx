@@ -60,40 +60,23 @@ export function TotalOrderDetails({
 
   return (
     <Drawer>
-      <DrawerTrigger className="mt-[0.5px]">
+      <DrawerTrigger className="mt-[0.5px] p-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="1em"
           height="1em"
-          viewBox="0 0 512 512"
+          viewBox="0 0 14 14"
         >
-          <path
+          {/* Icon from Streamline by Streamline - https://creativecommons.org/licenses/by/4.0/ */}
+          <g
             fill="none"
-            stroke="#807c73"
-            strokeMiterlimit="10"
-            strokeWidth="32"
-            d="M248 64C146.39 64 64 146.39 64 248s82.39 184 184 184s184-82.39 184-184S349.61 64 248 64Z"
-          />
-          <path
-            fill="none"
-            stroke="#807c73"
+            stroke="currentColor"
             strokeLinecap="round"
             strokeLinejoin="round"
-            strokeWidth="32"
-            d="M220 220h32v116"
-          />
-          <path
-            fill="none"
-            stroke="#807c73"
-            strokeLinecap="round"
-            strokeMiterlimit="10"
-            strokeWidth="32"
-            d="M208 340h88"
-          />
-          <path
-            fill="#807c73"
-            d="M248 130a26 26 0 1 0 26 26a26 26 0 0 0-26-26"
-          />
+          >
+            <ellipse cx="10.6" cy="3.5" rx="2.4" ry="3" />
+            <path d="M10.6 6.5v7M3.5.5v13M6 .5V3a2.5 2.5 0 0 1-2.5 2.5h0A2.5 2.5 0 0 1 1 3V.5" />
+          </g>
         </svg>
       </DrawerTrigger>
       <DrawerContent className="pb-10">

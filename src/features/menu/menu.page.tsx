@@ -84,7 +84,7 @@ export default function MenuPage() {
           {selectedItems.length > 0 && (
             <Card className="mt-4 md:mt-0 col-span-1 md:col-span-2 xl:col-span-4 ">
               <CardHeader>
-                <CardTitle className="flex items-center gap-3">
+                <CardTitle className="flex items-center gap-3 justify-between">
                   Détails
                   <TotalOrderDetails
                     name="Total ingrédients nécessaires"
