@@ -4,95 +4,49 @@ import {
   CardHeader,
   CardTitle,
 } from "../../components/ui/card";
-import { menu, type MenuItem } from "./data/menu";
+import { menu } from "./data/menu";
 import { useState, useMemo } from "react";
 import { Label } from "../../components/ui/label";
 import { Switch } from "../../components/ui/switch";
 import { Button } from "../../components/ui/button";
 import { MenuItemSection } from "./components/MenuItemCard";
-import type { Ingredient } from "./data/ingredients";
-import { MenuItemDetails } from "./components/MenuItemDetails";
+import { TotalOrderDetails } from "./components/TotalOrderDetails";
 
 export default function MenuPage() {
   const [quantities, setQuantities] = useState<{ [key: string]: number }>({});
-  const [showRealName, setShowRealName] = useState(false); // toggle
+  const [showRealName, setShowRealName] = useState(false);
 
   const getDishId = (itemIndex: number, dishIndex: number) =>
     `${itemIndex}-${dishIndex}`;
 
-  const total = useMemo(() => {
-    return menu.reduce((acc, item, itemIndex) => {
-      return (
-        acc +
-        item.dishes.reduce((dishAcc, dish, dishIndex) => {
-          const id = getDishId(itemIndex, dishIndex);
-          const qty = quantities[id] || 0;
-          return dishAcc + dish.price * qty;
-        }, 0)
-      );
-    }, 0);
-  }, [quantities]);
-
-  const selectedItems = useMemo(() => {
-    const items: { label: string; qty: number; price: number }[] = [];
+  const selectedDishes = useMemo(() => {
+    const result: { dish: (typeof menu)[0]["dishes"][0]; quantity: number }[] =
+      [];
 
     menu.forEach((item, itemIndex) => {
       item.dishes.forEach((dish, dishIndex) => {
         const id = getDishId(itemIndex, dishIndex);
         const qty = quantities[id] || 0;
         if (qty > 0) {
-          items.push({ label: dish.label, qty, price: dish.price });
+          result.push({ dish, quantity: qty });
         }
       });
     });
 
-    return items;
+    return result;
   }, [quantities]);
 
-  const totalIngredientsForDetails = useMemo(() => {
-    const ingredientMap = new Map<
-      string,
-      { label: string; quantity: number; details: Ingredient }
-    >();
+  const selectedItems = useMemo(() => {
+    return selectedDishes.map(({ dish, quantity }) => ({
+      label: dish.label,
+      qty: quantity,
+      price: dish.price,
+    }));
+  }, [selectedDishes]);
 
-    menu.forEach((item, itemIndex) => {
-      item.dishes.forEach((dish, dishIndex) => {
-        const id = getDishId(itemIndex, dishIndex);
-        const qty = quantities[id] || 0;
-        if (qty > 0 && dish.intredients) {
-          const multiplier = dish.multiplier || 1;
-          dish.intredients.forEach((ingredient) => {
-            const key = ingredient.details.label;
-            const totalQty = ingredient.quantity * qty * multiplier;
-
-            if (ingredientMap.has(key)) {
-              ingredientMap.get(key)!.quantity += totalQty;
-            } else {
-              ingredientMap.set(key, {
-                label: ingredient.details.label,
-                quantity: totalQty,
-                details: ingredient.details,
-              });
-            }
-          });
-        }
-      });
-    });
-
-    const finalList = Array.from(ingredientMap.values());
-
-    return {
-      name: "Total ingrédients nécessaires",
-      realname: "Ingrédients cumulés",
-      description: "Ingrédients requis pour les plats sélectionnés",
-      quantity: 1,
-      multiplier: 1,
-      ingredients: finalList.map((entry) => ({
-        quantity: entry.quantity,
-        details: entry.details,
-      })),
-    };
-  }, [quantities]);
+  const total = useMemo(() => {
+    return selectedItems.reduce((acc, item) => acc + item.qty * item.price, 0);
+  }, [selectedItems]);
 
   return (
     <div className="bg-[#fce1b6] px-[5%] py-10 min-h-screen w-full">
@@ -115,7 +69,7 @@ export default function MenuPage() {
           </Button>
         )}
         <div className="w-full grid md:grid-cols-2 xl:grid-cols-4 gap-6">
-          {menu.map((item: MenuItem, itemIndex: number) => (
+          {menu.map((item, itemIndex) => (
             <MenuItemSection
               key={itemIndex}
               item={item}
@@ -131,17 +85,13 @@ export default function MenuPage() {
             <Card className="mt-4 md:mt-0 col-span-1 md:col-span-2 xl:col-span-4 ">
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
-                  Détails{" "}
-                  {totalIngredientsForDetails && (
-                    <MenuItemDetails
-                      name={totalIngredientsForDetails.name}
-                      realname={totalIngredientsForDetails.realname}
-                      description={totalIngredientsForDetails.description}
-                      ingredients={totalIngredientsForDetails.ingredients}
-                      quantity={1}
-                      multiplier={1}
-                    />
-                  )}
+                  Détails
+                  <TotalOrderDetails
+                    name="Total ingrédients nécessaires"
+                    realname="Ingrédients cumulés"
+                    description="Liste de tous les ingrédients nécessaires selon les plats sélectionnés."
+                    selectedDishes={selectedDishes}
+                  />
                 </CardTitle>
                 <div className="mt-2 text-sm text-gray-700">
                   {selectedItems.map((item, index) => (

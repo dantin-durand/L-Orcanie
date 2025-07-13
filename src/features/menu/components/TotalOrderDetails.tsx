@@ -4,25 +4,60 @@ import {
   DrawerTrigger,
 } from "../../../components/ui/drawer";
 import { Heading1 } from "../../../components/ui/title";
-import type { DishIngredient } from "../data/menu";
+import type { Ingredient } from "../data/ingredients";
+import type { Dish } from "../data/menu";
 
-interface MenuItemDetailsProps {
+interface TotalOrderDetailsProps {
   name: string;
   realname: string;
   description?: string;
-  ingredients?: DishIngredient[];
-  quantity?: number;
-  multiplier: number;
+  selectedDishes: {
+    dish: Dish;
+    quantity: number;
+  }[];
 }
 
-export function MenuItemDetails({
+export function TotalOrderDetails({
   name,
   realname,
   description,
-  ingredients,
-  quantity = 1,
-  multiplier = 1,
-}: MenuItemDetailsProps) {
+  selectedDishes,
+}: TotalOrderDetailsProps) {
+  const ingredients = (() => {
+    const ingredientMap = new Map<
+      string,
+      { quantity: number; details: Ingredient }
+    >();
+
+    selectedDishes.forEach(({ dish, quantity }) => {
+      const multiplier = dish.multiplier || 1;
+      const batches = Math.ceil(quantity / multiplier);
+
+      if (!dish.intredients) return;
+
+      dish.intredients.forEach((ingredient) => {
+        const key = ingredient.details.label;
+        const totalQty = ingredient.quantity * batches;
+
+        if (ingredientMap.has(key)) {
+          ingredientMap.get(key)!.quantity += totalQty;
+        } else {
+          ingredientMap.set(key, {
+            quantity: totalQty,
+            details: ingredient.details,
+          });
+        }
+      });
+    });
+
+    return Array.from(ingredientMap.values())
+      .sort((a, b) => b.quantity - a.quantity)
+      .map((entry) => ({
+        quantity: entry.quantity,
+        details: entry.details,
+      }));
+  })();
+
   return (
     <Drawer>
       <DrawerTrigger className="mt-[0.5px]">
@@ -74,9 +109,8 @@ export function MenuItemDetails({
               {description || "Aucune description disponible."}
             </p>
           </div>
-          <ul className="flex flex-col gap-4">
-            {/* trier les ingrédients, mettre ceux qui ont isBaseIngredient à la fin */}
-            {ingredients && ingredients.length > 0 ? (
+          <ul className="flex flex-col gap-4 max-h-[50vh] overflow-y-auto pb-4">
+            {ingredients.length > 0 ? (
               ingredients
                 .sort((a, b) => {
                   if (
@@ -93,34 +127,22 @@ export function MenuItemDetails({
                   }
                   return 0;
                 })
-                .map((ingredient, index) => {
-                  let adjustedQty = 0;
-                  if (ingredient.details.isBaseIngredient) {
-                    adjustedQty = 1;
-                  } else {
-                    adjustedQty =
-                      quantity && multiplier
-                        ? ingredient.quantity * Math.ceil(quantity / multiplier)
-                        : ingredient.quantity;
-                  }
-
-                  return (
-                    <li
-                      key={index}
-                      className="mt-2 flex items-center gap-3 text-md"
-                    >
-                      <img
-                        src={ingredient.details.image}
-                        alt={ingredient.details.label}
-                        className="w-10 h-10"
-                      />
-                      <span>
-                        <strong>{adjustedQty}</strong>{" "}
-                        {ingredient.details.label}
-                      </span>
-                    </li>
-                  );
-                })
+                .map((ingredient, index) => (
+                  <li
+                    key={index}
+                    className="mt-2 flex items-center gap-3 text-md"
+                  >
+                    <img
+                      src={ingredient.details.image}
+                      alt={ingredient.details.label}
+                      className="w-10 h-10"
+                    />
+                    <span>
+                      <strong>{ingredient.quantity}</strong>{" "}
+                      {ingredient.details.label}
+                    </span>
+                  </li>
+                ))
             ) : (
               <li>Aucun ingrédient spécifié.</li>
             )}
