@@ -12,6 +12,13 @@ import { Button } from "../../components/ui/button";
 import { MenuItemSection } from "./components/MenuItemCard";
 import { TotalOrderDetails } from "./components/TotalOrderDetails";
 
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "../../components/ui/tabs";
+
 export default function MenuPage() {
   const [quantities, setQuantities] = useState<{ [key: string]: number }>({});
   const [showRealName, setShowRealName] = useState(false);
@@ -59,7 +66,7 @@ export default function MenuPage() {
             onCheckedChange={setShowRealName}
           />
         </div>
-        {selectedItems.length > 0 && (
+        {/* {selectedItems.length > 0 && (
           <Button
             className="w-full mb-6"
             onClick={() => setQuantities({})}
@@ -67,9 +74,9 @@ export default function MenuPage() {
           >
             Réinitialiser les quantités
           </Button>
-        )}
-        <div className="w-full grid md:grid-cols-2 xl:grid-cols-4 gap-6">
-          {menu.map((item, itemIndex) => (
+        )} */}
+        <div className="w-full">
+          {/* {menu.map((item, itemIndex) => (
             <MenuItemSection
               key={itemIndex}
               item={item}
@@ -79,7 +86,39 @@ export default function MenuPage() {
               quantities={quantities}
               setQuantities={setQuantities}
             />
-          ))}
+          ))} */}
+          <Tabs defaultValue="item-0" className="w-full">
+            <TabsList className="w-full mb-4">
+              {menu.map((item, itemIndex) => (
+                <TabsTrigger
+                  key={itemIndex}
+                  value={`item-${itemIndex}`}
+                  className="text-3xl flex items-center justify-center"
+                >
+                  {item.icon}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+
+            <div className="flex flex-col gap-4">
+              {menu.map((item, itemIndex) => (
+                <TabsContent
+                  key={itemIndex}
+                  value={`item-${itemIndex}`}
+                  className=""
+                >
+                  <MenuItemSection
+                    item={item}
+                    itemIndex={itemIndex}
+                    showRealName={showRealName}
+                    getDishId={getDishId}
+                    quantities={quantities}
+                    setQuantities={setQuantities}
+                  />
+                </TabsContent>
+              ))}
+            </div>
+          </Tabs>
 
           {selectedItems.length > 0 && (
             <Card className="mt-4 md:mt-0 col-span-1 md:col-span-2 xl:col-span-4 ">
@@ -87,9 +126,7 @@ export default function MenuPage() {
                 <CardTitle className="flex items-center gap-3 justify-between">
                   Détails
                   <TotalOrderDetails
-                    name="Total ingrédients nécessaires"
-                    realname="Ingrédients cumulés"
-                    description="Liste de tous les ingrédients nécessaires selon les plats sélectionnés."
+                    name="Total des ingrédients"
                     selectedDishes={selectedDishes}
                   />
                 </CardTitle>

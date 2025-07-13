@@ -9,8 +9,6 @@ import type { Dish } from "../data/menu";
 
 interface TotalOrderDetailsProps {
   name: string;
-  realname: string;
-  description?: string;
   selectedDishes: {
     dish: Dish;
     quantity: number;
@@ -19,8 +17,6 @@ interface TotalOrderDetailsProps {
 
 export function TotalOrderDetails({
   name,
-  realname,
-  description,
   selectedDishes,
 }: TotalOrderDetailsProps) {
   const ingredients = (() => {
@@ -84,13 +80,7 @@ export function TotalOrderDetails({
           <div className="flex flex-col gap-2">
             <Heading1 className="text-2xl text-left flex items-center gap-x-4 gap-y-1 flex-wrap">
               {name || "Détails du plat"}
-              <span className="text-sm bg-gray-100 px-3 py-1 rounded-sm border border-gray-400 text-gray-600 font-medium ">
-                {realname}
-              </span>
             </Heading1>
-            <p className="text-lg">
-              {description || "Aucune description disponible."}
-            </p>
           </div>
           <ul className="flex flex-col gap-4 max-h-[50vh] overflow-y-auto pb-4">
             {ingredients.length > 0 ? (

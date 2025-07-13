@@ -21,6 +21,7 @@ import {
 export const menu = [
   {
     title: "Repas",
+    icon: "🍽️",
     dishes: [
       {
         label: "Bouillon Ecossais",
@@ -125,6 +126,7 @@ export const menu = [
   },
   {
     title: "Desserts & Fromages",
+    icon: "🍰",
     dishes: [
       {
         label: "Scotch Apple Pie",
@@ -184,6 +186,7 @@ export const menu = [
   },
   {
     title: "Boissons",
+    icon: "🥤",
     dishes: [
       {
         label: "Jus d'orange",
@@ -219,6 +222,7 @@ export const menu = [
   },
   {
     title: "Boissons alcoolisées",
+    icon: "🍺",
     dishes: [
       {
         label: "Little Cidre",
@@ -264,6 +268,7 @@ export const menu = [
 
 export type MenuItem = {
   title: string;
+  icon: string;
   description?: string;
   dishes: Dish[];
 };
