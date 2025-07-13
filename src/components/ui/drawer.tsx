@@ -4,9 +4,18 @@ import { Drawer as DrawerPrimitive } from "vaul";
 import { cn } from "../../lib/utils";
 
 function Drawer({
+  children,
   ...props
 }: React.ComponentProps<typeof DrawerPrimitive.Root>) {
-  return <DrawerPrimitive.Root data-slot="drawer" {...props} />;
+  return (
+    <DrawerPrimitive.Root
+      data-slot="drawer"
+      handleOnly={true} // 🚫 désactive le swipe
+      {...props}
+    >
+      {children}
+    </DrawerPrimitive.Root>
+  );
 }
 
 function DrawerTrigger({
