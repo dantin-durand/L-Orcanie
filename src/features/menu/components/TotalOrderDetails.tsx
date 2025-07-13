@@ -111,7 +111,11 @@ export function TotalOrderDetails({
                       className="w-10 h-10"
                     />
                     <span>
-                      <strong>{ingredient.quantity}</strong>{" "}
+                      <strong>
+                        {ingredient.details.isBaseIngredient
+                          ? 1
+                          : ingredient.quantity}
+                      </strong>{" "}
                       {ingredient.details.label}
                     </span>
                   </li>
