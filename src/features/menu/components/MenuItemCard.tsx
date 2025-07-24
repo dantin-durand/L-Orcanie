@@ -48,7 +48,7 @@ export function MenuItemSection({
                 : " border-transparent"
             } ${qty > 0 ? "bg-green-50" : ""}`}
           >
-            <div className="flex flex-col gap-3 pt-2">
+            <div className="flex flex-col gap-0.5 pt-2">
               <CardTitle className="flex items-center gap-3">
                 {showRealName ? dish.realName : dish.label}{" "}
                 <MenuItemDetails
@@ -63,6 +63,8 @@ export function MenuItemSection({
               <CardDescription>
                 {showRealName ? dish.label : dish.realName}
               </CardDescription>
+
+              <p className="text-xs text-gray-500 pt-2">{dish.description}</p>
             </div>
             <CardAction className="flex flex-col items-end gap-2">
               <p>
