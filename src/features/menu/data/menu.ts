@@ -15,7 +15,6 @@ import {
   red_currants,
   salt,
   sugar_bag,
-  wild_mint,
   wild_thyme,
 } from "./ingredients";
 export const menu = [
@@ -90,21 +89,6 @@ export const menu = [
         intredients: [
           { quantity: 3, details: chopped_vegetables },
           { quantity: 1, details: origan },
-          { quantity: 1, details: salt },
-        ],
-      },
-      {
-        label: "Tartine du pêcheur",
-        realName: "Brochette de poisson",
-        description:
-          "Deux oeufs au plat sur une tranche de truite fumée. Le tout sur une épaisse tranche de main grillé",
-        price: 0.2,
-        pinned: false,
-        multiplier: 2,
-        intredients: [
-          { quantity: 1, details: fish_filet },
-          { quantity: 1, details: chopped_vegetables },
-          { quantity: 1, details: wild_mint },
           { quantity: 1, details: salt },
         ],
       },
