@@ -200,7 +200,7 @@ export const menu = [
         label: "Thé noir",
         realName: "Thé noir",
         description: "Thé noir chaud",
-        price: 0.1,
+        price: 0.15,
       },
     ],
   },
