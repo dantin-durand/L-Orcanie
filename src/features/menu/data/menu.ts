@@ -5,16 +5,11 @@ import {
   chopped_mushrooms,
   chopped_vegetables,
   corn_flour,
-  eggs,
   fish_filet,
   laurier_rose,
-  milk_bottles,
   minced_meat,
   origan,
-  raspberries,
-  red_currants,
   salt,
-  sugar_bag,
   wild_thyme,
 } from "./ingredients";
 export const menu = [
@@ -22,6 +17,21 @@ export const menu = [
     title: "Repas",
     icon: "🍽️",
     dishes: [
+      {
+        label: "Little Duck",
+        realName: "Little Duck",
+        description:
+          "Magret de canard grillé et flambé au whisky, accompagné de pommes de terre sautées.",
+        price: 0.35,
+        pinned: false,
+        multiplier: 2,
+        intredients: [
+          { quantity: 2, details: butcher_piece },
+          { quantity: 1, details: wild_thyme },
+          { quantity: 1, details: chopped_vegetables },
+          { quantity: 1, details: salt },
+        ],
+      },
       {
         label: "Bouillon Ecossais",
         realName: "Ragout de viande",
@@ -141,22 +151,6 @@ export const menu = [
           { quantity: 1, details: chopped_vegetables },
           { quantity: 1, details: laurier_rose },
           { quantity: 1, details: salt },
-        ],
-      },
-      {
-        label: "Cranachan",
-        realName: "Cranachan",
-        description:
-          "Dessert écossais à base de framboises et baies sauvages. Des flocons d'avoine grillés avec un filet de miel des montagnes. Servi avec de la crème fouettée et une touche de whisky.",
-        price: 0.35,
-        pinned: true,
-        multiplier: 2,
-        intredients: [
-          { quantity: 4, details: raspberries },
-          { quantity: 4, details: red_currants },
-          { quantity: 3, details: eggs },
-          { quantity: 2, details: milk_bottles },
-          { quantity: 1, details: sugar_bag },
         ],
       },
       {
